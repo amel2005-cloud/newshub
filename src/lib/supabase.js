@@ -21,7 +21,16 @@ export const getProfile = async (userId) => {
 export const getPublishedNews = async ({ limit = 9, offset = 0, categorySlug, search } = {}) => {
   let query = supabase
     .from("news")
-    .select("*, categories(name, slug)", { count: "exact" })
+    .select(
+  `
+  *,
+  categories!news_category_id_fkey (
+    name,
+    slug
+  )
+`,
+  { count: "exact" }
+)
     .eq("status", "published")
     .order("created_at", { ascending: false })
     .range(offset, offset + limit - 1);
@@ -43,7 +52,7 @@ export const getNewsDetail = async (slug) => {
     .from("news")
     .select(`
   *,
-  categories:news_category_id_fkey (
+  categories!news_category_id_fkey (
     name,
     slug
   )
@@ -58,19 +67,37 @@ export const getNewsDetail = async (slug) => {
 
 export const getFeaturedNews = () =>
   supabase.from("news")
-    .select("*, categories(name, slug)")
+    .select(`
+  *,
+  categories!news_category_id_fkey (
+    name,
+    slug
+  )
+`)
     .eq("status", "published").eq("featured", true)
     .order("created_at", { ascending: false }).limit(5);
 
 export const getPopularNews = () =>
   supabase.from("news")
-    .select("*, categories(name, slug)")
+    .select(`
+  *,
+  categories!news_category_id_fkey (
+    name,
+    slug
+  )
+`)
     .eq("status", "published")
     .order("views", { ascending: false }).limit(5);
 
 export const getRelatedNews = (categoryId, excludeId) =>
   supabase.from("news")
-    .select("*, categories(name, slug)")
+    .select(`
+  *,
+  categories!news_category_id_fkey (
+    name,
+    slug
+  )
+`)
     .eq("status", "published").eq("category_id", categoryId).neq("id", excludeId).limit(4);
 
 // ===== CATEGORIES =====
@@ -81,7 +108,15 @@ export const getCategories = () =>
 export const adminGetAllNews = ({ limit = 15, offset = 0, status, categoryId, search } = {}) => {
   let query = supabase
     .from("news")
-    .select("*, categories(name)", { count: "exact" })
+    .select(
+  `
+  *,
+  categories!news_category_id_fkey (
+    name
+  )
+`,
+  { count: "exact" }
+)
     .order("created_at", { ascending: false })
     .range(offset, offset + limit - 1);
 
@@ -101,7 +136,13 @@ export const adminDeleteNews = (id) =>
   supabase.from("news").delete().eq("id", id);
 
 export const adminGetNewsById = (id) =>
-  supabase.from("news").select("*, categories(name, slug)").eq("id", id).single();
+  supabase.from("news").select(`
+  *,
+  categories!news_category_id_fkey (
+    name,
+    slug
+  )
+`).eq("id", id).single();
 
 // ===== ADMIN: CATEGORIES CRUD =====
 export const adminCreateCategory = (data) =>
