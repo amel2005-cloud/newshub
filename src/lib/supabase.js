@@ -41,7 +41,13 @@ export const getPublishedNews = async ({ limit = 9, offset = 0, categorySlug, se
 export const getNewsDetail = async (slug) => {
   const { data, error } = await supabase
     .from("news")
-    .select("*, categories(name, slug)")
+    .select(`
+  *,
+  categories:news_category_id_fkey (
+    name,
+    slug
+  )
+`)
     .eq("slug", slug).eq("status", "published").single();
 
   if (data) {
