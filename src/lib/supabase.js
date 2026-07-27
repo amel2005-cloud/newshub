@@ -21,7 +21,7 @@ export const getProfile = async (userId) => {
 export const getPublishedNews = async ({ limit = 9, offset = 0, categorySlug, search } = {}) => {
   let query = supabase
     .from("news")
-    .select("*, categories(name, slug), authors!news_author_id_fkey(name, photo)", { count: "exact" })
+    .select("*, categories(name, slug)", { count: "exact" })
     .eq("status", "published")
     .order("created_at", { ascending: false })
     .range(offset, offset + limit - 1);
@@ -41,7 +41,7 @@ export const getPublishedNews = async ({ limit = 9, offset = 0, categorySlug, se
 export const getNewsDetail = async (slug) => {
   const { data, error } = await supabase
     .from("news")
-    .select("*, categories(name, slug), authors!news_author_id_fkey(name, photo, bio)")
+    .select("*, categories(name, slug)")
     .eq("slug", slug).eq("status", "published").single();
 
   if (data) {
@@ -52,34 +52,30 @@ export const getNewsDetail = async (slug) => {
 
 export const getFeaturedNews = () =>
   supabase.from("news")
-    .select("*, categories(name, slug), authors!news_author_id_fkey(name)")
+    .select("*, categories(name, slug)")
     .eq("status", "published").eq("featured", true)
     .order("created_at", { ascending: false }).limit(5);
 
 export const getPopularNews = () =>
   supabase.from("news")
-    .select("*, categories(name, slug), authors!news_author_id_fkey(name)")
+    .select("*, categories(name, slug)")
     .eq("status", "published")
     .order("views", { ascending: false }).limit(5);
 
 export const getRelatedNews = (categoryId, excludeId) =>
   supabase.from("news")
-    .select("*, categories(name, slug), authors!news_author_id_fkey(name)")
+    .select("*, categories(name, slug)")
     .eq("status", "published").eq("category_id", categoryId).neq("id", excludeId).limit(4);
 
 // ===== CATEGORIES =====
 export const getCategories = () =>
   supabase.from("categories").select("*").order("name");
 
-// ===== AUTHORS =====
-export const getAuthors = () =>
-  supabase.from("authors").select("*").order("name");
-
 // ===== ADMIN: NEWS CRUD =====
 export const adminGetAllNews = ({ limit = 15, offset = 0, status, categoryId, search } = {}) => {
   let query = supabase
     .from("news")
-    .select("*, categories(name), authors!news_author_id_fkey(name)", { count: "exact" })
+    .select("*, categories(name)", { count: "exact" })
     .order("created_at", { ascending: false })
     .range(offset, offset + limit - 1);
 
@@ -99,9 +95,7 @@ export const adminDeleteNews = (id) =>
   supabase.from("news").delete().eq("id", id);
 
 export const adminGetNewsById = (id) =>
-  supabase.from("news")
-    .select("*, categories(name, slug), authors!news_author_id_fkey(name)")
-    .eq("id", id).single();
+  supabase.from("news").select("*, categories(name, slug)").eq("id", id).single();
 
 // ===== ADMIN: CATEGORIES CRUD =====
 export const adminCreateCategory = (data) =>
@@ -112,16 +106,6 @@ export const adminUpdateCategory = (id, data) =>
 
 export const adminDeleteCategory = (id) =>
   supabase.from("categories").delete().eq("id", id);
-
-// ===== ADMIN: AUTHORS CRUD =====
-export const adminCreateAuthor = (data) =>
-  supabase.from("authors").insert([data]).select().single();
-
-export const adminUpdateAuthor = (id, data) =>
-  supabase.from("authors").update(data).eq("id", id);
-
-export const adminDeleteAuthor = (id) =>
-  supabase.from("authors").delete().eq("id", id);
 
 // ===== ADMIN: USERS =====
 export const adminGetUsers = () =>
@@ -147,21 +131,26 @@ export const uploadImage = async (file, folder = "thumbnails") => {
 
 // ===== DASHBOARD STATS =====
 export const getDashboardStats = async () => {
-  const [newsRes, publishedRes, draftRes, catRes, authorRes, userRes] = await Promise.all([
+  const [newsRes, publishedRes, draftRes, catRes, userRes] = await Promise.all([
     supabase.from("news").select("id", { count: "exact", head: true }),
     supabase.from("news").select("id", { count: "exact", head: true }).eq("status", "published"),
     supabase.from("news").select("id", { count: "exact", head: true }).eq("status", "draft"),
     supabase.from("categories").select("id", { count: "exact", head: true }),
-    supabase.from("authors").select("id", { count: "exact", head: true }),
     supabase.from("profiles").select("id", { count: "exact", head: true }),
   ]);
+
+  // Hitung jumlah penulis unik dari kolom author_name
+  const { data: authorData } = await supabase
+    .from("news").select("author_name").neq("author_name", null);
+  
+  const uniqueAuthors = new Set(authorData?.map(n => n.author_name)).size;
 
   return {
     total_news: newsRes.count || 0,
     published_news: publishedRes.count || 0,
     draft_news: draftRes.count || 0,
     total_categories: catRes.count || 0,
-    total_authors: authorRes.count || 0,
+    total_authors: uniqueAuthors || 0,
     total_users: userRes.count || 0,
   };
 };

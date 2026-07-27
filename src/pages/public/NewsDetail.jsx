@@ -51,14 +51,14 @@ export default function NewsDetail() {
           <h1 className="text-navy font-extrabold text-2xl md:text-3xl leading-tight mb-4">{news.title}</h1>
 
           <div className="flex items-center gap-4 text-gray-500 text-sm mb-5 flex-wrap">
-            {news.authors && (
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-navy rounded-full flex items-center justify-center text-white text-xs font-bold">
-                  {news.authors.name?.charAt(0)}
-                </div>
-                <span className="font-medium">{news.authors.name}</span>
-              </div>
-            )}
+            {news.author_name && (
+  <div className="flex items-center gap-2">
+    <div className="w-8 h-8 bg-navy rounded-full flex items-center justify-center text-white text-xs font-bold">
+      {news.author_name.charAt(0)}
+    </div>
+    <span className="font-medium">{news.author_name}</span>
+  </div>
+)}
             <span>•</span>
             <span>{news.published_at ? format(new Date(news.published_at), 'd MMMM yyyy', { locale: id }) : ''}</span>
             <span>•</span>
@@ -100,17 +100,19 @@ export default function NewsDetail() {
           )}
 
           {/* Author bio */}
-          {news.authors?.bio && (
-            <div className="mt-8 p-4 bg-white rounded-xl shadow-sm flex gap-4">
-              <div className="w-12 h-12 bg-navy rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-                {news.authors.name?.charAt(0)}
-              </div>
-              <div>
-                <p className="font-semibold text-navy">{news.authors.name}</p>
-                <p className="text-sm text-gray-500">{news.authors.bio}</p>
-              </div>
-            </div>
-          )}
+          {news.author_name && (
+  <div className="mt-8 p-4 bg-white rounded-xl shadow-sm flex gap-4">
+    <div className="w-12 h-12 bg-navy rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+      {news.author_name.charAt(0)}
+    </div>
+    <div>
+      <p className="font-semibold text-navy">{news.author_name}</p>
+      <p className="text-sm text-gray-500">
+        Penulis berita
+      </p>
+    </div>
+  </div>
+)}
         </article>
 
         {/* Sidebar - Related */}

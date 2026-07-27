@@ -40,9 +40,9 @@ export default function NewsCard({ news, size = 'normal' }) {
           <p className="text-gray-500 text-xs line-clamp-2 mb-3">{news.short_description}</p>
         )}
         <div className="flex justify-between items-center text-xs text-gray-400">
-          <span>{news.authors?.name}</span>
-          <span>{date}</span>
-        </div>
+  <span>{news.author_name}</span>
+  <span>{date}</span>
+</div>
         <Link to={`/news/${news.slug}`}
           className="mt-3 inline-block text-xs bg-red text-white px-3 py-1.5 rounded hover:bg-red-dark transition-colors">
           Baca Selengkapnya

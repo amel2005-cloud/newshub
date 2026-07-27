@@ -7,7 +7,6 @@ const menuItems = [
   { label: "Dashboard", path: "/admin/dashboard", icon: "📊" },
   { label: "Manajemen Berita", path: "/admin/news", icon: "📰" },
   { label: "Kategori", path: "/admin/categories", icon: "🏷️" },
-  { label: "Penulis", path: "/admin/authors", icon: "✍️" },
   { label: "Pengguna", path: "/admin/users", icon: "👥" },
 ];
 

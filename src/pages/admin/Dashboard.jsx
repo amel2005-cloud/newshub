@@ -60,7 +60,7 @@ export default function Dashboard() {
                     <span className="line-clamp-1 font-medium text-navy">{n.title}</span>
                   </td>
                   <td className="py-3 text-gray-500">{n.categories?.name}</td>
-                  <td className="py-3 text-gray-500">{n.authors?.name}</td>
+                  <td className="py-3 text-gray-500">{n.author_name || '-'}</td>
                   <td className="py-3">
                     <span className={`px-2 py-0.5 rounded text-xs font-medium ${
                       n.status === 'published' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'

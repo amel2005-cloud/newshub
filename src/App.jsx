@@ -16,7 +16,6 @@ import NewsList from './pages/admin/news/NewsList'
 import NewsCreate from './pages/admin/news/NewsCreate'
 import NewsEdit from './pages/admin/news/NewsEdit'
 import Categories from './pages/admin/Categories'
-import Authors from './pages/admin/Authors'
 import Users from './pages/admin/Users'
 
 const AdminRoute = ({ children }) => {
@@ -53,7 +52,6 @@ export default function App() {
           <Route path="/admin/news/create" element={<AdminRoute><NewsCreate /></AdminRoute>} />
           <Route path="/admin/news/edit/:id" element={<AdminRoute><NewsEdit /></AdminRoute>} />
           <Route path="/admin/categories" element={<AdminRoute><Categories /></AdminRoute>} />
-          <Route path="/admin/authors" element={<AdminRoute><Authors /></AdminRoute>} />
           <Route path="/admin/users" element={<AdminRoute><Users /></AdminRoute>} />
 
           <Route path="*" element={<Navigate to="/" />} />
