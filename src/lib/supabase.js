@@ -133,11 +133,7 @@ export const adminDeleteNews = (id) =>
   supabase.from("news").delete().eq("id", id);
 
 export const adminGetNewsById = (id) =>
-  supabase
-    .from("news")
-    .select("*, categories(name), authors(name)")
-    .eq("id", id)
-    .single();
+  supabase.from("news").select("*").eq("id", id).single();
 
 // ===== ADMIN: CATEGORIES CRUD =====
 export const adminCreateCategory = (data) =>
