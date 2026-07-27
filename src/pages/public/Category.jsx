@@ -29,7 +29,7 @@ export default function Category() {
   return (
     <PublicLayout>
       <div className="mb-6">
-        <h1 className="text-2xl font-extrabold text-navy border-l-4 border-red pl-3">
+        <h1 className="text-2xl font-extrabold text-white border-l-4 border-red pl-3">
           {category?.name || 'Kategori'}
         </h1>
         {category?.description && <p className="text-gray-500 text-sm mt-1 ml-4">{category.description}</p>}
