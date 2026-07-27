@@ -75,7 +75,7 @@ export default function MascotHero() {
                     </p>
                   </div>
 
-                  <div className="hidden sm:block mascot-float relative w-52 md:w-80 h-52 md:h-80">
+                  <div className="mascot-float relative w-32 sm:w-52 md:w-80 h-32 sm:h-52 md:h-80">
                     {POSES.map((src, i) => (
                       <img
                         key={src + i}
