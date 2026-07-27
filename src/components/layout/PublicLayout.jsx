@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { signOut, getCategories } from "../../lib/supabase";
+import MascotCard from "./MascotCard";
+import MascotHero from "./MascotHero";
 
 export default function PublicLayout({ children }) {
   const { user, isAdmin } = useAuth();
@@ -26,7 +28,12 @@ export default function PublicLayout({ children }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div
+  className="min-h-screen flex flex-col"
+  style={{
+    background: "linear-gradient(180deg, #0b2545 0%, #12335f 45%, #0d2a52 100%)",
+  }}
+>
       {/* Navbar */}
       <nav className="bg-navy sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-4">
@@ -144,7 +151,10 @@ export default function PublicLayout({ children }) {
           )}
         </div>
       </nav>
+<MascotHero />
 
+{/* Main content */}
+<main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6"></main>
       {/* Main content */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6">
         {children}

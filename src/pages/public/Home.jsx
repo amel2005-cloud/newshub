@@ -118,9 +118,10 @@ export default function Home() {
         </div>
       </div>
 
+
       {/* Latest News */}
 <div className="flex items-center justify-between mb-4">
-  <h2 className="text-navy font-bold text-xl border-l-4 border-red pl-3">
+  <h2 className="text-white font-bold text-xl border-l-4 border-red pl-3">
     Berita Terbaru
   </h2>
 </div>
@@ -138,7 +139,7 @@ export default function Home() {
       {/* Featured + Popular sidebar */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
         <div className="lg:col-span-2">
-          <h2 className="text-navy font-bold text-xl border-l-4 border-red pl-3 mb-4">
+          <h2 className="text-white font-bold text-xl border-l-4 border-red pl-3 mb-4">
             Berita Pilihan
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -149,7 +150,7 @@ export default function Home() {
         </div>
 
         <div>
-          <h2 className="text-navy font-bold text-xl border-l-4 border-red pl-3 mb-4">
+          <h2 className="text-white font-bold text-xl border-l-4 border-red pl-3 mb-4">
             Paling Banyak Dibaca
           </h2>
           <div className="bg-white rounded-lg shadow-sm p-4 space-y-4 mb-6">
@@ -173,7 +174,7 @@ export default function Home() {
             ))}
           </div>
 
-          <h2 className="text-navy font-bold text-xl border-l-4 border-red pl-3 mb-4">
+          <h2 className="text-white font-bold text-xl border-l-4 border-red pl-3 mb-4">
             Kategori
           </h2>
           <div className="flex flex-wrap gap-2">
