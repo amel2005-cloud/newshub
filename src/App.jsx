@@ -6,6 +6,7 @@ import Home from './pages/public/Home'
 import NewsDetail from './pages/public/NewsDetail'
 import Category from './pages/public/Category'
 import Search from './pages/public/Search'
+import NewsArchive from './pages/public/NewsArchive'
 
 // Auth
 import Login from './pages/auth/Login'
@@ -39,6 +40,7 @@ export default function App() {
         <Routes>
           {/* Public */}
           <Route path="/" element={<Home />} />
+          <Route path="/berita" element={<NewsArchive />} />
           <Route path="/news/:slug" element={<NewsDetail />} />
           <Route path="/category/:slug" element={<Category />} />
           <Route path="/search" element={<Search />} />
@@ -55,6 +57,7 @@ export default function App() {
           <Route path="/admin/users" element={<AdminRoute><Users /></AdminRoute>} />
 
           <Route path="*" element={<Navigate to="/" />} />
+        
         </Routes>
       </BrowserRouter>
     </AuthProvider>

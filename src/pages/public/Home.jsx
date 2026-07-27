@@ -20,32 +20,31 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all([
-      getPublishedNews({ limit: 9 }),
-      getFeaturedNews(),
-      getPopularNews(),
-      getCategories(),
-    ]).then(([latestRes, featuredRes, popularRes, catRes]) => {
-      const latestData = latestRes.data || [];
-      const featuredData = featuredRes.data || [];
-      const popularData = popularRes.data || [];
-      const catData = catRes.data || [];
+  Promise.all([
+    getPublishedNews({ limit: 6 }), // <-- diubah dari 9 jadi 6
+    getFeaturedNews(),
+    getPopularNews(),
+    getCategories(),
+  ]).then(([latestRes, featuredRes, popularRes, catRes]) => {
+    const latestData = latestRes.data || [];
+    const featuredData = featuredRes.data || [];
+    const popularData = popularRes.data || [];
+    const catData = catRes.data || [];
 
-      setLatest(latestData);
-      setFeatured(featuredData);
-      setPopular(popularData);
-      setCategories(catData);
+    setLatest(latestData);
+    setFeatured(featuredData);
+    setPopular(popularData);
+    setCategories(catData);
 
-      setStats({
-        news: latestRes.count || latestData.length,
-        categories: catData.length,
-        views: popularData.reduce((acc, n) => acc + (n.views || 0), 0),
-      });
-
-      setLoading(false);
+    setStats({
+      news: latestRes.count || latestData.length,
+      categories: catData.length,
+      views: popularData.reduce((acc, n) => acc + (n.views || 0), 0),
     });
-  }, []);
 
+    setLoading(false);
+  });
+}, []);
   const hero = featured[0] || latest[0];
 
   if (loading)
@@ -120,16 +119,21 @@ export default function Home() {
       </div>
 
       {/* Latest News */}
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-navy font-bold text-xl border-l-4 border-red pl-3">
-          Berita Terbaru
-        </h2>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-        {latest.map((n) => (
-          <NewsCard key={n.id} news={n} />
-        ))}
-      </div>
+<div className="flex items-center justify-between mb-4">
+  <h2 className="text-navy font-bold text-xl border-l-4 border-red pl-3">
+    Berita Terbaru
+  </h2>
+</div>
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
+  {latest.map((n) => (
+    <NewsCard key={n.id} news={n} />
+  ))}
+</div>
+<div className="text-center mb-10">
+  <Link to="/berita" className="btn-red inline-block">
+    Lihat Semua Berita
+  </Link>
+</div>
 
       {/* Featured + Popular sidebar */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
