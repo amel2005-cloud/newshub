@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f5f7;
+    color: #1b1b1b;
+  }
+}
+
+@layer components {
+  .btn-red {
+    @apply bg-red text-white px-4 py-2 rounded font-semibold hover:bg-red-dark transition-colors;
+  }
+  .btn-navy {
+    @apply bg-navy text-white px-4 py-2 rounded font-semibold hover:opacity-90 transition-opacity;
+  }
+  .btn-outline {
+    @apply border border-gray-300 text-gray-700 px-4 py-2 rounded font-semibold hover:bg-gray-100 transition-colors;
+  }
+  .card-news {
+    @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden;
+  }
+  .badge-cat {
+    @apply bg-red text-white text-xs px-2 py-0.5 rounded font-medium;
+  }
+  .input {
+    @apply w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red/30 focus:border-red;
+  }
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+}
+
+/* Rich text content */
+.news-content p { margin-bottom: 1rem; line-height: 1.8; }
+.news-content h2 { font-size: 1.5rem; font-weight: 700; margin: 1.5rem 0 0.75rem; }
+.news-content h3 { font-size: 1.25rem; font-weight: 700; margin: 1.25rem 0 0.5rem; }
+.news-content ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+.news-content ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+.news-content blockquote { border-left: 4px solid #d62828; padding-left: 1rem; color: #555; margin: 1rem 0; font-style: italic; }
+.news-content img { max-width: 100%; border-radius: 0.5rem; margin: 1rem 0; }
