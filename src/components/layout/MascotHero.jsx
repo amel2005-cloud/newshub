@@ -61,35 +61,35 @@ export default function MascotHero() {
                     backgroundSize: "20px 20px",
                   }}
                 />
-                <div className="relative flex items-center justify-between w-full px-6 md:px-10 py-6">
-                  <div className="max-w-md">
-                    <span className="badge-cat inline-block mb-3">
-                      KOJBNews
-                    </span>
-                    <h2 className="text-white font-extrabold text-2xl md:text-4xl leading-tight mb-2">
-                      Info & Berita Seputar OJK Jember
-                    </h2>
-                    <p className="text-blue-200 text-sm md:text-base">
-                      Update terbaru langsung dari sumber resmi, biar kamu gak
-                      ketinggalan info.
-                    </p>
-                  </div>
+                <div className="relative flex flex-col sm:flex-row items-center sm:items-center justify-between w-full px-6 md:px-10 py-6 gap-4 sm:gap-0 text-center sm:text-left">
+  <div className="max-w-md">
+    <span className="badge-cat inline-block mb-3">
+      KOJBNews
+    </span>
+    <h2 className="text-white font-extrabold text-2xl md:text-4xl leading-tight mb-2">
+      Info & Berita Seputar OJK Jember
+    </h2>
+    <p className="text-blue-200 text-sm md:text-base">
+      Update terbaru langsung dari sumber resmi, biar kamu gak
+      ketinggalan info.
+    </p>
+  </div>
 
-                  <div className="mascot-float relative w-32 sm:w-52 md:w-80 h-32 sm:h-52 md:h-80">
-                    {POSES.map((src, i) => (
-                      <img
-                        key={src + i}
-                        src={src}
-                        alt="Maskot KOJBNews"
-                        className="absolute inset-0 w-full h-full object-contain drop-shadow-2xl select-none transition-opacity duration-700"
-                        style={{
-                          opacity: i === poseIndex ? 1 : 0,
-                          transform: "translateZ(30px)",
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
+  <div className="mascot-float relative w-40 sm:w-52 md:w-80 h-40 sm:h-52 md:h-80">
+    {POSES.map((src, i) => (
+      <img
+        key={src + i}
+        src={src}
+        alt="Maskot KOJBNews"
+        className="absolute inset-0 w-full h-full object-contain drop-shadow-2xl select-none transition-opacity duration-700"
+        style={{
+          opacity: i === poseIndex ? 1 : 0,
+          transform: "translateZ(30px)",
+        }}
+      />
+    ))}
+  </div>
+</div>
               </div>
             </div>
 
