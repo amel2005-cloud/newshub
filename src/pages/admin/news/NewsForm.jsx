@@ -79,8 +79,10 @@ export default function NewsForm({ initialData, newsId }) {
       thumbnailUrl = url;
     }
 
+    const { categories, id, created_at, updated_at, ...cleanForm } = form;
+
     const payload = {
-      ...form,
+      ...cleanForm,
       thumbnail: thumbnailUrl,
       published_at:
         form.status === "published"
