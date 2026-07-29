@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { signOut, getCategories } from "../../lib/supabase";
+import MascotHero from "./MascotHero";
 import {
   Search,
   Menu,
@@ -12,8 +13,8 @@ import {
   MapPin,
   Phone,
   Printer,
-  Instagram,
 } from "lucide-react";
+
 
 export default function PublicLayout({ children }) {
   const { user, isAdmin } = useAuth();
@@ -53,7 +54,7 @@ export default function PublicLayout({ children }) {
     navigate("/");
   };
 
-  const isActive = (slug) => location.pathname === `/kategori/${slug}`;
+  const isActive = (slug) => location.pathname === `/category/${slug}`;
 
   return (
     <div className="min-h-screen bg-[#0b1a33] text-white flex flex-col">
@@ -84,7 +85,7 @@ export default function PublicLayout({ children }) {
                 return (
                   <Link
                     key={cat.id}
-                    to={`/kategori/${cat.slug}`}
+                    to={`/category/${cat.slug}`}
                     className={`relative px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                       active
                         ? "text-white"
@@ -98,8 +99,14 @@ export default function PublicLayout({ children }) {
                   </Link>
                 );
               })}
+              <a href="https://ojk-jember-edukasi.vercel.app/" target="_blank" rel="noopener noreferrer"
+                className="relative px-3 py-2 text-sm font-medium rounded-md transition-colors text-red-400 hover:text-white hover:bg-red-600/20 border border-red-500/30">
+                Pengajuan Edukasi
+              </a>
+                
             </nav>
-
+            
+            
             {/* Right side: search + actions */}
             <div className="flex items-center gap-2 shrink-0">
               {/* Search (desktop) */}
@@ -181,7 +188,7 @@ export default function PublicLayout({ children }) {
                 {categories.map((cat) => (
                   <Link
                     key={cat.id}
-                    to={`/kategori/${cat.slug}`}
+                    to={`/category/${cat.slug}`}
                     className={`px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
                       isActive(cat.slug)
                         ? "bg-red-600/15 text-red-400"
@@ -229,11 +236,13 @@ export default function PublicLayout({ children }) {
       </header>
 
       {/* ============ MAIN CONTENT ============ */}
-      <main className="flex-1">{children}</main>
-
+      <MascotHero />
+<main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6">
+  {children}
+</main>
       {/* ============ FOOTER ============ */}
-      <footer className="bg-[#081428] border-t border-white/10 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <footer className="bg-[#081428] border-t border-white/10 mt-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Kolom 1: Brand */}
             <div>
@@ -270,17 +279,14 @@ export default function PublicLayout({ children }) {
                   <span>Fax : (0331) 486 800</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Instagram
-                    size={16}
-                    className="mt-0.5 text-red-500 shrink-0"
-                  />
+                  <span> @ojk_jember</span>
+
                   <a
                     href="https://instagram.com/ojk_jember"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-white transition-colors"
                   >
-                    @ojk_jember
                   </a>
                 </li>
               </ul>
