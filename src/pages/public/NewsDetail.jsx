@@ -41,8 +41,9 @@ export default function NewsDetail() {
   return (
     <PublicLayout>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
         {/* Main article */}
-        <article className="lg:col-span-2">
+        <article className="lg:col-span-2 bg-white rounded-xl p-6 shadow-sm">
           {news.categories && (
             <Link to={`/category/${news.categories.slug}`} className="badge-cat mb-3 inline-block">
               {news.categories.name}
@@ -52,13 +53,13 @@ export default function NewsDetail() {
 
           <div className="flex items-center gap-4 text-gray-500 text-sm mb-5 flex-wrap">
             {news.author_name && (
-  <div className="flex items-center gap-2">
-    <div className="w-8 h-8 bg-navy rounded-full flex items-center justify-center text-white text-xs font-bold">
-      {news.author_name.charAt(0)}
-    </div>
-    <span className="font-medium">{news.author_name}</span>
-  </div>
-)}
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-navy rounded-full flex items-center justify-center text-white text-xs font-bold">
+                  {news.author_name.charAt(0)}
+                </div>
+                <span className="font-medium">{news.author_name}</span>
+              </div>
+            )}
             <span>•</span>
             <span>{news.published_at ? format(new Date(news.published_at), 'd MMMM yyyy', { locale: id }) : ''}</span>
             <span>•</span>
@@ -99,30 +100,29 @@ export default function NewsDetail() {
             </div>
           )}
 
-          {/* Author bio */}
+          {/* Author */}
           {news.author_name && (
-  <div className="mt-8 p-4 bg-white rounded-xl shadow-sm flex gap-4">
-    <div className="w-12 h-12 bg-navy rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-      {news.author_name.charAt(0)}
-    </div>
-    <div>
-      <p className="font-semibold text-navy">{news.author_name}</p>
-      <p className="text-sm text-gray-500">
-        Penulis berita
-      </p>
-    </div>
-  </div>
-)}
+            <div className="mt-8 p-4 bg-lightgray rounded-xl flex gap-4">
+              <div className="w-12 h-12 bg-navy rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+                {news.author_name.charAt(0)}
+              </div>
+              <div>
+                <p className="font-semibold text-navy">{news.author_name}</p>
+                <p className="text-sm text-gray-500">Penulis berita</p>
+              </div>
+            </div>
+          )}
         </article>
 
         {/* Sidebar - Related */}
-        <aside>
+        <aside className="bg-white rounded-xl p-4 shadow-sm h-fit">
           <h3 className="font-bold text-navy text-lg border-l-4 border-red pl-3 mb-4">Berita Terkait</h3>
           <div className="space-y-4">
             {related.length === 0 && <p className="text-gray-400 text-sm">Tidak ada berita terkait.</p>}
             {related.map(n => <NewsCard key={n.id} news={n} size="small" />)}
           </div>
         </aside>
+
       </div>
     </PublicLayout>
   )
