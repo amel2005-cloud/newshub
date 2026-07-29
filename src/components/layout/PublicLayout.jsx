@@ -29,11 +29,12 @@ export default function PublicLayout({ children }) {
 
   return (
     <div
-  className="min-h-screen flex flex-col"
-  style={{
-    background: "linear-gradient(180deg, #0b2545 0%, #12335f 45%, #0d2a52 100%)",
-  }}
->
+      className="min-h-screen flex flex-col"
+      style={{
+        background:
+          "linear-gradient(180deg, #0b2545 0%, #12335f 45%, #0d2a52 100%)",
+      }}
+    >
       {/* Navbar */}
       <nav className="bg-navy sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-4">
@@ -151,10 +152,10 @@ export default function PublicLayout({ children }) {
           )}
         </div>
       </nav>
-<MascotHero />
+      <MascotHero />
 
-{/* Main content */}
-<main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6"></main>
+      {/* Main content */}
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6"></main>
       {/* Main content */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6">
         {children}
@@ -164,12 +165,13 @@ export default function PublicLayout({ children }) {
       <footer
         className="text-blue-200 mt-8 relative"
         style={{
-          backgroundImage: `linear-gradient(rgba(11,37,69,0.6), rgba(11,37,69,0.7)), url('/ojk-jember.jpg')`,
+          backgroundImage: `linear-gradient(rgba(11,37,69,0.75), rgba(11,37,69,0.85)), url('/ojk-jember.jpg')`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center top",
+          maxHeight: "280px",
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 py-10">
+        <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-white font-bold text-lg mb-2">
