@@ -15,7 +15,6 @@ import {
   Printer,
 } from "lucide-react";
 
-
 export default function PublicLayout({ children }) {
   const { user, isAdmin } = useAuth();
   const navigate = useNavigate();
@@ -99,14 +98,16 @@ export default function PublicLayout({ children }) {
                   </Link>
                 );
               })}
-              <a href="https://ojk-jember-edukasi.vercel.app/" target="_blank" rel="noopener noreferrer"
-                className="relative px-3 py-2 text-sm font-medium rounded-md transition-colors text-red-400 hover:text-white hover:bg-red-600/20 border border-red-500/30">
+              <a
+                href="https://ojk-jember-edukasi.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative px-3 py-2 text-sm font-medium rounded-md transition-colors text-red-400 hover:text-white hover:bg-red-600/20 border border-red-500/30"
+              >
                 Pengajuan Edukasi
               </a>
-                
             </nav>
-            
-            
+
             {/* Right side: search + actions */}
             <div className="flex items-center gap-2 shrink-0">
               {/* Search (desktop) */}
@@ -237,9 +238,9 @@ export default function PublicLayout({ children }) {
 
       {/* ============ MAIN CONTENT ============ */}
       <MascotHero />
-<main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6">
-  {children}
-</main>
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6">
+        {children}
+      </main>
       {/* ============ FOOTER ============ */}
       <footer className="bg-[#081428] border-t border-white/10 mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -286,8 +287,7 @@ export default function PublicLayout({ children }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-white transition-colors"
-                  >
-                  </a>
+                  ></a>
                 </li>
               </ul>
             </div>
