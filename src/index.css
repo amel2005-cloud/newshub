@@ -4,10 +4,14 @@
 
 @layer base {
   body {
-    font-family: "Space Grotesk", sans-serif;
-    background-color: #f4f5f7;
-    color: #1b1b1b;
-  }
+  font-family: 'Inter', sans-serif;
+  background-color: #060d1a;
+  color: #f1f5f9;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
 }
 
 @layer components {

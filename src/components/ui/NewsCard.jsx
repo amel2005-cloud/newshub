@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import LiquidButton from "./LiquidButton";
 
 export default function NewsCard({ news, size = "normal" }) {
   const imgSrc =
@@ -86,11 +87,8 @@ export default function NewsCard({ news, size = "normal" }) {
           <span>{news.author_name}</span>
           <span>{date}</span>
         </div>
-        <Link
-          to={`/news/${news.slug}`}
-          className="mt-3 inline-block text-xs bg-red-600 text-white px-3 py-1.5 rounded-full hover:bg-red-500 transition-all hover:scale-105 hover:shadow-md hover:shadow-red-600/30"
-        >
-          Baca Selengkapnya
+        <Link to={`/news/${news.slug}`} className="mt-3 inline-block">
+          <LiquidButton>Baca Selengkapnya</LiquidButton>
         </Link>
       </div>
     </motion.div>
