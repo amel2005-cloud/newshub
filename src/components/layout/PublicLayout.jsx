@@ -132,7 +132,7 @@ export default function PublicLayout({ children }) {
                 <>
                   {isAdmin && (
                     <Link
-                      to="/admin"
+                      to="/admin/dashboard"
                       className="hidden sm:inline-flex items-center gap-1.5 bg-red-600 hover:bg-red-500 text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors shadow-md shadow-red-600/20"
                     >
                       <LayoutDashboard size={15} />
