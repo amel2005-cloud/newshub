@@ -273,3 +273,31 @@ export const getDashboardStats = async () => {
     total_users: userRes.count || 0,
   };
 };
+// Ambil daftar tahun yang ada beritanya
+export const getAvailableYears = async () => {
+  const { data } = await supabase
+    .from("news")
+    .select("published_at")
+    .eq("status", "published")
+    .not("published_at", "is", null)
+    .order("published_at", { ascending: false });
+
+  if (!data) return [];
+  const years = [...new Set(data.map(n => new Date(n.published_at).getFullYear()))];
+  return years.sort((a, b) => b - a);
+};
+
+// Ambil berita berdasarkan tahun
+export const getNewsByYear = async (year, { limit = 12, offset = 0 } = {}) => {
+  const start = `${year}-01-01T00:00:00.000Z`;
+  const end = `${year}-12-31T23:59:59.999Z`;
+
+  return supabase
+    .from("news")
+    .select("*, categories(name, slug)", { count: "exact" })
+    .eq("status", "published")
+    .gte("published_at", start)
+    .lte("published_at", end)
+    .order("published_at", { ascending: false })
+    .range(offset, offset + limit - 1);
+};

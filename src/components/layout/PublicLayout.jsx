@@ -156,7 +156,12 @@ export default function PublicLayout({ children }) {
                   Login
                 </Link>
               )}
-
+<Link
+  to="/arsip"
+  className="relative px-3 py-2 text-sm font-medium rounded-md transition-colors text-white/70 hover:text-white hover:bg-white/5"
+>
+  Arsip
+</Link>
               {/* Mobile menu toggle */}
               <button
                 onClick={() => setMenuOpen(!menuOpen)}

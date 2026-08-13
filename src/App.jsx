@@ -7,6 +7,7 @@ import NewsDetail from './pages/public/NewsDetail'
 import Category from './pages/public/Category'
 import Search from './pages/public/Search'
 import NewsArchive from './pages/public/NewsArchive'
+import Archive from './pages/public/Archive'
 
 // Auth
 import Login from './pages/auth/Login'
@@ -42,6 +43,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/berita" element={<NewsArchive />} />
           <Route path="/news/:slug" element={<NewsDetail />} />
+          <Route path="/arsip" element={<Archive />} />
+<Route path="/arsip/:year" element={<Archive />} />
           <Route path="/category/:slug" element={<Category />} />
           <Route path="/search" element={<Search />} />
 

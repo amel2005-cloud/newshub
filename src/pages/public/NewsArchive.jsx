@@ -41,7 +41,7 @@ export default function NewsArchive() {
   return (
     <PublicLayout>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-navy font-bold text-2xl border-l-4 border-red pl-3">
+        <h1 className="text-white font-bold text-2xl border-l-4 border-red pl-3">
           Semua Berita
         </h1>
         <span className="text-gray-400 text-sm">{totalCount} berita</span>
