@@ -2,12 +2,21 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { signOut } from "../../lib/supabase";
+import {
+  LayoutDashboard,
+  Newspaper,
+  Tags,
+  Users,
+  Globe,
+  LogOut,
+  Menu,
+} from "lucide-react";
 
 const menuItems = [
-  { label: "Dashboard", path: "/admin/dashboard", icon: "📊" },
-  { label: "Manajemen Berita", path: "/admin/news", icon: "📰" },
-  { label: "Kategori", path: "/admin/categories", icon: "🏷️" },
-  { label: "Pengguna", path: "/admin/users", icon: "👥" },
+  { label: "Dashboard", path: "/admin/dashboard", icon: LayoutDashboard },
+  { label: "Manajemen Berita", path: "/admin/news", icon: Newspaper },
+  { label: "Kategori", path: "/admin/categories", icon: Tags },
+  { label: "Pengguna", path: "/admin/users", icon: Users },
 ];
 
 export default function AdminLayout({ children, title }) {
@@ -24,32 +33,45 @@ export default function AdminLayout({ children, title }) {
   const Sidebar = () => (
     <div className="flex flex-col h-full">
       <div className="p-5 border-b border-white/10">
-        <Link to="/" className="text-white font-extrabold text-xl">
-          KOJB<span className="text-red">News</span>
+        <Link to="/" className="flex items-center gap-2.5">
+          <img
+            src="/logo-ojk.png"
+            alt="OJK Jember"
+            className="h-9 w-auto object-contain"
+          />
+          <span className="h-6 w-px bg-white/20" />
+          <span className="text-white font-extrabold text-lg">
+            KOJB<span className="text-red">News</span>
+          </span>
         </Link>
       </div>
       <nav className="flex-1 py-4">
-        {menuItems.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={`flex items-center gap-3 px-5 py-3 text-sm transition-colors ${
-              location.pathname.startsWith(item.path)
-                ? "bg-red text-white font-semibold"
-                : "text-blue-200 hover:bg-white/10 hover:text-white"
-            }`}
-            onClick={() => setSidebarOpen(false)}
-          >
-            <span>{item.icon}</span>
-            {item.label}
-          </Link>
-        ))}
+        {menuItems.map((item) => {
+          const Icon = item.icon;
+          const active = location.pathname.startsWith(item.path);
+          return (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`flex items-center gap-3 px-5 py-3 text-sm transition-colors ${
+                active
+                  ? "bg-red text-white font-semibold"
+                  : "text-blue-200 hover:bg-white/10 hover:text-white"
+              }`}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <Icon size={18} strokeWidth={1.75} className="shrink-0" />
+              {item.label}
+            </Link>
+          );
+        })}
         <Link
           to="/"
           className="flex items-center gap-3 px-5 py-3 text-sm text-blue-200 hover:bg-white/10 hover:text-white transition-colors"
           onClick={() => setSidebarOpen(false)}
         >
-          <span>🌐</span> Lihat Website
+          <Globe size={18} strokeWidth={1.75} className="shrink-0" />
+          Lihat Website
         </Link>
       </nav>
       <div className="p-4 border-t border-white/10">
@@ -58,7 +80,8 @@ export default function AdminLayout({ children, title }) {
           onClick={handleLogout}
           className="w-full text-left text-sm text-blue-200 hover:text-red transition-colors flex items-center gap-2"
         >
-          <span>🚪</span> Logout
+          <LogOut size={16} strokeWidth={1.75} className="shrink-0" />
+          Logout
         </button>
       </div>
     </div>
@@ -92,20 +115,9 @@ export default function AdminLayout({ children, title }) {
             <button
               onClick={() => setSidebarOpen(true)}
               className="md:hidden text-gray-500"
+              aria-label="Buka menu"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+              <Menu size={24} />
             </button>
             <h1 className="font-bold text-navy text-lg">{title}</h1>
           </div>
