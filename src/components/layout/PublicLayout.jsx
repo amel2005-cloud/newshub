@@ -9,7 +9,6 @@ import {
   X,
   LayoutDashboard,
   LogOut,
-  Newspaper,
   MapPin,
   Phone,
   Printer,
@@ -68,10 +67,13 @@ export default function PublicLayout({ children }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20 gap-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 shrink-0 group">
-              <span className="grid place-items-center w-9 h-9 rounded-lg bg-red-600 group-hover:bg-red-500 transition-colors">
-                <Newspaper size={18} className="text-white" />
-              </span>
+            <Link to="/" className="flex items-center gap-3 shrink-0 group">
+              <img
+                src="/logo-ojk.png"
+                alt="OJK Jember"
+                className="h-8 sm:h-12 lg:h-14 w-auto object-contain"
+              />
+              <span className="h-8 w-px bg-white/20" />
               <span className="text-xl font-extrabold tracking-tight">
                 KOJB<span className="text-red-500">News</span>
               </span>
@@ -156,12 +158,12 @@ export default function PublicLayout({ children }) {
                   Login
                 </Link>
               )}
-<Link
-  to="/arsip"
-  className="relative px-3 py-2 text-sm font-medium rounded-md transition-colors text-white/70 hover:text-white hover:bg-white/5"
->
-  Arsip
-</Link>
+              <Link
+                to="/arsip"
+                className="relative px-3 py-2 text-sm font-medium rounded-md transition-colors text-white/70 hover:text-white hover:bg-white/5"
+              >
+                Arsip
+              </Link>
               {/* Mobile menu toggle */}
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -252,10 +254,13 @@ export default function PublicLayout({ children }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Kolom 1: Brand */}
             <div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="grid place-items-center w-9 h-9 rounded-lg bg-red-600">
-                  <Newspaper size={18} className="text-white" />
-                </span>
+              <div className="flex items-center gap-3 mb-3">
+                <img
+                  src="/logo-ojk.png"
+                  alt="OJK Jember"
+                  className="h-12 w-auto object-contain"
+                />
+                <span className="h-8 w-px bg-white/20" />
                 <span className="text-xl font-extrabold tracking-tight">
                   KOJB<span className="text-red-500">News</span>
                 </span>
